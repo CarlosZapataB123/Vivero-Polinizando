@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vivero Polinizando | Norcasia, Caldas</title>
+    
+    <!-- Importación de Fuentes de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Estilos CSS integrados en el HTML -->
+    <style>
+        /* --- Variables de Diseño --- */
+        :root {
+            --verde-principal: #2E7D32; /* Verde bosque */
+            --verde-claro: #E8F5E9;   /* Fondo suave */
+            --acento-amarillo: #FFC107; /* Botones y detalles */
+            --texto-oscuro: #212121;
+            --texto-claro: #FFFFFF;
+            --sombra-suave: 0px 8px 20px rgba(0, 0, 0, 0.1);
+            --fuente-titulos: 'Lora', serif;
+            --fuente-cuerpo: 'Montserrat', sans-serif;
+        }
+
+        /* --- Estilos Generales --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--fuente-cuerpo);
+            background-color: var(--verde-claro);
+            color: var(--texto-oscuro);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 0;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--fuente-titulos);
+            color: var(--verde-principal);
+        }
+
+        /* --- Header y Navegación --- */
+        .header {
+            background-color: var(--texto-claro);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        .logo {
+            font-family: var(--fuente-titulos);
+            font-size: 1.8em;
+            color: var(--verde-principal);
+            text-decoration: none;
+        }
+
+        .nav a {
+            color: var(--verde-principal);
+            text-decoration: none;
+            font-weight: 500;
+            margin-left: 25px;
+            font-size: 1em;
+            transition: color 0.3s ease;
+        }
+
+        .nav a:hover {
+            color: var(--acento-amarillo);
+        }
+
+        /* --- Sección Hero (Principal) --- */
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1463936575829-25148e1db1b8?q=80&w=2070&auto=format&fit=crop');
+            height: 85vh;
+            background-position: center;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--texto-claro);
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            color: var(--texto-claro);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-top: 15px;
+            max-width: 600px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--acento-amarillo);
+            color: var(--texto-oscuro);
+            padding: 15px 35px;
+            margin-top: 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 10px 25px rgba(255, 193, 7, 0.4);
+        }
+
+        /* --- Secciones y Títulos --- */
+        .section-title {
+            text-align: center;
+            font-size: 2.8em;
+            margin-bottom: 50px;
+        }
+
+        /* --- Catálogo de Plantas --- */
+        #catalogo .tabs {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .tab-button {
+            background: none;
+            border: 2px solid var(--verde-principal);
+            color: var(--verde-principal);
+            padding: 10px 20px;
+            margin: 0 5px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: var(--fuente-cuerpo);
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .tab-button:hover, .tab-button.active {
+            background-color: var(--verde-principal);
+            color: var(--texto-claro);
+        }
+
+        .plant-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .plant-card {
+            background-color: var(--texto-claro);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--sombra-suave);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .plant-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 12px 25px rgba(0,0,0,0.15);
+        }
+
+        .plant-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .plant-info {
+            padding: 25px;
+        }
+        
+        .plant-info h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .plant-info .price {
+            font-size: 1.6em;
+            font-weight: 700;
+            color: var(--verde-principal);
+            margin-top: 15px;
+        }
+
+        /* --- Footer (Contacto) --- */
+        .footer {
+            background-color: var(--verde-principal);
+            color: var(--texto-claro);
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        .footer h2 {
+            font-size: 2.5em;
+            color: var(--texto-claro);
+            margin-bottom: 20px;
+        }
+
+        .footer p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .footer .contact-info strong {
+            color: var(--acento-amarillo);
+        }
+
+        /* --- Diseño Responsivo para Móviles --- */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                padding: 15px;
+            }
+            .nav {
+                margin-top: 15px;
+            }
+            .nav a {
+                margin: 0 10px;
+            }
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            .hero p {
+                font-size: 1.1rem;
+            }
+            .container {
+                padding: 40px 0;
+            }
+            .section-title {
+                font-size: 2.2em;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- ================== HEADER ================== -->
+    <header class="header" id="header">
+        <a href="#" class="logo">Polinizando</a>
+        <nav class="nav">
+            <a href="#hero">Inicio</a>
+            <a href="#catalogo">Catálogo</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- ================== SECCIÓN PRINCIPAL (HERO) ================== -->
+        <section class="hero" id="hero">
+            <h1>Vida y color para tu hogar</h1>
+            <p>El vivero de Norcasia, Caldas, con la mayor variedad de plantas para llenar tus espacios de naturaleza y frescura.</p>
+            <a href="#catalogo" class="cta-button">Explora nuestras plantas</a>
+        </section>
+
+        <!-- ================== CATÁLOGO DE PLANTAS ================== -->
+        <section id="catalogo" class="container">
+            <h2 class="section-title">Nuestro Catálogo</h2>
+            
+            <!-- Aquí puedes añadir más botones para filtrar por categorías si lo deseas -->
+            <div class="tabs">
+                <button class="tab-button active">Todas</button>
+                <button class="tab-button">De Interior</button>
+                <button class="tab-button">Suculentas</button>
+                <button class="tab-button">De Exterior</button>
+            </div>
+
+            <div class="plant-grid">
+                <!-- Tarjeta de Planta 1 -->
+                <div class="plant-card" data-category="interior">
+                    <img src="https://images.unsplash.com/photo-1596547609233-9693a5a781d6?q=80&w=1974&auto=format&fit=crop" alt="Monstera Deliciosa">
+                    <div class="plant-info">
+                        <h3>Monstera Deliciosa</h3>
+                        <p class="price">$55.000</p>
+                    </div>
+                </div>
+
+                <!-- Tarjeta de Planta 2 -->
+                <div class="plant-card" data-category="suculenta">
+                    <img src="https://images.unsplash.com/photo-1520427221293-b1d6f1403610?q=80&w=1974&auto=format&fit=crop" alt="Variedad de Suculentas">
+                    <div class="plant-info">
+                        <h3>Set de Suculentas</h3>
+                        <p class="price">$40.000</p>
+                    </div>
+                </div>
+
+                <!-- Tarjeta de Planta 3 -->
+                <div class="plant-card" data-category="interior">
+                    <img src="https://images.unsplash.com/photo-1614555893096-f187799292a7?q=80&w=1964&auto=format&fit=crop" alt="Pilea Peperomioides">
+                    <div class="plant-info">
+                        <h3>Pilea Peperomioides</h3>
+                        <p class="price">$35.000</p>
+                    </div>
+                </div>
+
+                <!-- Tarjeta de Planta 4 -->
+                <div class="plant-card" data-category="exterior">
+                    <img src="https://images.unsplash.com/photo-1587823548639-68ae24164478?q=80&w=1974&auto=format&fit=crop" alt="Lavanda">
+                    <div class="plant-info">
+                        <h3>Lavanda</h3>
+                        <p class="price">$25.000</p>
+                    </div>
+                </div>
+
+                <!-- Tarjeta de Planta 5 -->
+                <div class="plant-card" data-category="exterior">
+                    <img src="https://images.unsplash.com/photo-1557080252-e3d82a450531?q=80&w=1974&auto=format&fit=crop" alt="Rosal">
+                    <div class="plant-info">
+                        <h3>Rosal Miniatura</h3>
+                        <p class="price">$30.000</p>
+                    </div>
+                </div>
+
+                <!-- Tarjeta de Planta 6 -->
+                <div class="plant-card" data-category="suculenta">
+                    <img src="https://images.unsplash.com/photo-1509423350611-21c235882a1e?q=80&w=1974&auto=format&fit=crop" alt="Orquídea">
+                    <div class="plant-info">
+                        <h3>Orquídea Phalaenopsis</h3>
+                        <p class="price">$70.000</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ================== FOOTER (CONTACTO) ================== -->
+    <footer class="footer" id="contacto">
+        <div class="container">
+            <h2>Ponte en Contacto</h2>
+            <p>
+                Visítanos en nuestro vivero en <strong>Norcasia, Caldas</strong> o llámanos. <br>¡Estamos listos para ayudarte a encontrar tus plantas ideales!
+            </p>
+            <p class="contact-info">
+                Celular y WhatsApp: <strong>310 357 2921</strong>
+            </p>
+            <p style="margin-top:40px; font-size: 0.9em; opacity: 0.7;">
+                Vivero Polinizando &copy; 2025
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
