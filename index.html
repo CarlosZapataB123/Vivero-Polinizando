@@ -15,7 +15,7 @@
         /* --- Variables de Diseño --- */
         :root {
             --verde-principal: #2E7D32; /* Verde bosque */
-            --verde-claro: #E8F5E9;   /* Fondo suave */
+            --verde-claro: #F1F8E9;   /* Fondo suave */
             --acento-amarillo: #FFC107; /* Botones y detalles */
             --texto-oscuro: #212121;
             --texto-claro: #FFFFFF;
@@ -42,7 +42,12 @@
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 60px 0;
+            padding: 80px 0;
+        }
+        
+        /* Contenedor para la sección de macetas */
+        .pots-container {
+             background-color: #e5e4d7; /* Un fondo ligeramente diferente para distinguir la sección */
         }
 
         h1, h2, h3 {
@@ -85,7 +90,7 @@
 
         /* --- Sección Hero (Principal) --- */
         .hero {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1463936575829-25148e1db1b8?q=80&w=2070&auto=format&fit=crop');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('https://images.unsplash.com/photo-1463936575829-25148e1db1b8?q=80&w=2070&auto=format&fit=crop');
             height: 85vh;
             background-position: center;
             background-size: cover;
@@ -133,38 +138,15 @@
             font-size: 2.8em;
             margin-bottom: 50px;
         }
-
-        /* --- Catálogo de Plantas --- */
-        #catalogo .tabs {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .tab-button {
-            background: none;
-            border: 2px solid var(--verde-principal);
-            color: var(--verde-principal);
-            padding: 10px 20px;
-            margin: 0 5px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-family: var(--fuente-cuerpo);
-            font-weight: 700;
-            transition: all 0.3s ease;
-        }
-
-        .tab-button:hover, .tab-button.active {
-            background-color: var(--verde-principal);
-            color: var(--texto-claro);
-        }
-
-        .plant-grid {
+        
+        /* --- Cuadrícula de Productos (Plantas y Macetas) --- */
+        .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
 
-        .plant-card {
+        .product-card {
             background-color: var(--texto-claro);
             border-radius: 15px;
             overflow: hidden;
@@ -173,39 +155,41 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
-        .plant-card:hover {
+        .product-card:hover {
             transform: translateY(-10px);
             box-shadow: 0px 12px 25px rgba(0,0,0,0.15);
         }
 
-        .plant-card img {
+        .product-card img {
             width: 100%;
             height: 300px;
             object-fit: cover;
+            display: block;
         }
 
-        .plant-info {
+        .product-info {
             padding: 25px;
         }
         
-        .plant-info h3 {
+        .product-info h3 {
             font-size: 1.5em;
             margin-bottom: 10px;
         }
-
-        .plant-info .price {
+        
+        .product-info .price {
             font-size: 1.6em;
             font-weight: 700;
             color: var(--verde-principal);
             margin-top: 15px;
         }
-
+        
         /* --- Footer (Contacto) --- */
         .footer {
             background-color: var(--verde-principal);
             color: var(--texto-claro);
             text-align: center;
-            padding: 50px 0;
+            padding: 60px 0;
+            margin-top: -1px; /* Para evitar doble margen con la sección de macetas */
         }
 
         .footer h2 {
@@ -243,10 +227,13 @@
                 font-size: 1.1rem;
             }
             .container {
-                padding: 40px 0;
+                padding: 40px 5%;
             }
             .section-title {
                 font-size: 2.2em;
+            }
+            .product-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -259,7 +246,8 @@
         <a href="#" class="logo">Polinizando</a>
         <nav class="nav">
             <a href="#hero">Inicio</a>
-            <a href="#catalogo">Catálogo</a>
+            <a href="#catalogo">Plantas</a>
+            <a href="#macetas">Macetas</a>
             <a href="#contacto">Contacto</a>
         </nav>
     </header>
@@ -268,75 +256,55 @@
         <!-- ================== SECCIÓN PRINCIPAL (HERO) ================== -->
         <section class="hero" id="hero">
             <h1>Vida y color para tu hogar</h1>
-            <p>El vivero de Norcasia, Caldas, con la mayor variedad de plantas para llenar tus espacios de naturaleza y frescura.</p>
-            <a href="#catalogo" class="cta-button">Explora nuestras plantas</a>
+            <p>El vivero de Norcasia, Caldas, con la mayor variedad de plantas y macetas para llenar tus espacios de naturaleza y frescura.</p>
+            <a href="#catalogo" class="cta-button">Explora nuestros productos</a>
         </section>
 
         <!-- ================== CATÁLOGO DE PLANTAS ================== -->
         <section id="catalogo" class="container">
-            <h2 class="section-title">Nuestro Catálogo</h2>
+            <h2 class="section-title">Nuestro Catálogo de Plantas</h2>
             
-            <!-- Aquí puedes añadir más botones para filtrar por categorías si lo deseas -->
-            <div class="tabs">
-                <button class="tab-button active">Todas</button>
-                <button class="tab-button">De Interior</button>
-                <button class="tab-button">Suculentas</button>
-                <button class="tab-button">De Exterior</button>
+            <div class="product-grid">
+                <!-- Plantas -->
+                <div class="product-card"><img src="https://images.unsplash.com/photo-1596547609233-9693a5a781d6?q=80&w=1974&auto=format&fit=crop" alt="Monstera Deliciosa"><div class="product-info"><h3>Monstera Deliciosa</h3><p class="price">$55.000</p></div></div>
+                <div class="product-card"><img src="https://images.unsplash.com/photo-1614555893096-f187799292a7?q=80&w=1964&auto=format&fit=crop" alt="Pilea Peperomioides"><div class="product-info"><h3>Pilea Peperomioides</h3><p class="price">$35.000</p></div></div>
+                <div class="product-card"><img src="https://images.unsplash.com/photo-1509423350611-21c235882a1e?q=80&w=1974&auto=format&fit=crop" alt="Orquídea"><div class="product-info"><h3>Orquídea Phalaenopsis</h3><p class="price">$70.000</p></div></div>
+                <div class="product-card"><img src="https://images.unsplash.com/photo-1600272020948-0d45203b53c3?q=80&w=1966&auto=format&fit=crop" alt="Helecho"><div class="product-info"><h3>Helecho de Boston</h3><p class="price">$30.000</p></div></div>
+                <div class="product-card"><img src="https://images.unsplash.com/photo-1596724814345-424a18035e16?q=80&w=1974&auto=format&fit=crop" alt="Cactus"><div class="product-info"><h3>Cactus San Pedro</h3><p class="price">$45.000</p></div></div>
+                <div class="product-card"><img src="https://images.unsplash.com/photo-1601962383577-a8b355e109ce?q=80&w=1974&auto=format&fit=crop" alt="Sansevieria"><div class="product-info"><h3>Sansevieria (Lengua de suegra)</h3><p class="price">$40.000</p></div></div>
+                <div class="product-card"><img src="https://images.unsplash.com/photo-1520427221293-b1d6f1403610?q=80&w=1974&auto=format&fit=crop" alt="Variedad de Suculentas"><div class="product-info"><h3>Set de Suculentas</h3><p class="price">$40.000</p></div></div>
+                <div class="product-card"><img src="https://images.unsplash.com/photo-1587823548639-68ae24164478?q=80&w=1974&auto=format&fit=crop" alt="Lavanda"><div class="product-info"><h3>Planta de Lavanda</h3><p class="price">$25.000</p></div></div>
+                <div class="product-card"><img src="https://images.unsplash.com/photo-1617112848984-75515d74d2da?q=80&w=1974&auto=format&fit=crop" alt="Ficus Lyrata"><div class="product-info"><h3>Ficus Lyrata</h3><p class="price">$85.000</p></div></div>
+                <div class="product-card"><img src="https://images.unsplash.com/photo-1629438965979-317215a7721a?q=80&w=1974&auto=format&fit=crop" alt="Calathea Orbifolia"><div class="product-info"><h3>Calathea Orbifolia</h3><p class="price">$60.000</p></div></div>
+                <div class="product-card"><img src="https://images.unsplash.com/photo-1557080252-e3d82a450531?q=80&w=1974&auto=format&fit=crop" alt="Rosal"><div class="product-info"><h3>Rosal Miniatura</h3><p class="price">$30.000</p></div></div>
+                <div class="product-card"><img src="https://images.unsplash.com/photo-1609142621760-3923c996515b?q=80&w=1974&auto=format&fit=crop" alt="Planta de aire"><div class="product-info"><h3>Tillandsia (Planta de Aire)</h3><p class="price">$20.000</p></div></div>
+                <div class="product-card"><img src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=1974&auto=format&fit=crop" alt="Begonia"><div class="product-info"><h3>Begonia Maculata</h3><p class="price">$50.000</p></div></div>
+                <div class="product-card"><img src="https://images.unsplash.com/photo-1579294781347-7a54952033d5?q=80&w=1974&auto=format&fit=crop" alt="Planta de Goma"><div class="product-info"><h3>Ficus Elastica (Planta de Goma)</h3><p class="price">$65.000</p></div></div>
+                <div class="product-card"><img src="https://images.unsplash.com/photo-1633519548134-8c439b1a5e4d?q=80&w=1964&auto=format&fit=crop" alt="Anthurium"><div class="product-info"><h3>Anthurium Rojo</h3><p class="price">$58.000</p></div></div>
+                <div class="product-card"><img src="https://images.unsplash.com/photo-1605552349195-235817c7d425?q=80&w=1974&auto=format&fit=crop" alt="Potos"><div class="product-info"><h3>Potos (Epipremnum aureum)</h3><p class="price">$28.000</p></div></div>
+                <div class="product-card"><img src="https://images.unsplash.com/photo-1545239705-15f111a45749?q=80&w=1974&auto=format&fit=crop" alt="Ave del paraíso"><div class="product-info"><h3>Ave del Paraíso</h3><p class="price">$95.000</p></div></div>
+                <div class="product-card"><img src="https://images.unsplash.com/photo-1567683933314-a950a9751996?q=80&w=1974&auto=format&fit=crop" alt="Planta Araña"><div class="product-info"><h3>Planta Araña</h3><p class="price">$22.000</p></div></div>
+                <div class="product-card"><img src="https://images.unsplash.com/photo-1459411622445-445848275485?q=80&w=2070&auto=format&fit=crop" alt="Bonsai"><div class="product-info"><h3>Bonsai Juniperus</h3><p class="price">$120.000</p></div></div>
+                <div class="product-card"><img src="https://images.unsplash.com/photo-1604762511424-6a16171910d5?q=80&w=1974&auto=format&fit=crop" alt="Alocasia"><div class="product-info"><h3>Alocasia (Oreja de Elefante)</h3><p class="price">$75.000</p></div></div>
             </div>
-
-            <div class="plant-grid">
-                <!-- Tarjeta de Planta 1 -->
-                <div class="plant-card" data-category="interior">
-                    <img src="https://images.unsplash.com/photo-1596547609233-9693a5a781d6?q=80&w=1974&auto=format&fit=crop" alt="Monstera Deliciosa">
-                    <div class="plant-info">
-                        <h3>Monstera Deliciosa</h3>
-                        <p class="price">$55.000</p>
-                    </div>
-                </div>
-
-                <!-- Tarjeta de Planta 2 -->
-                <div class="plant-card" data-category="suculenta">
-                    <img src="https://images.unsplash.com/photo-1520427221293-b1d6f1403610?q=80&w=1974&auto=format&fit=crop" alt="Variedad de Suculentas">
-                    <div class="plant-info">
-                        <h3>Set de Suculentas</h3>
-                        <p class="price">$40.000</p>
-                    </div>
-                </div>
-
-                <!-- Tarjeta de Planta 3 -->
-                <div class="plant-card" data-category="interior">
-                    <img src="https://images.unsplash.com/photo-1614555893096-f187799292a7?q=80&w=1964&auto=format&fit=crop" alt="Pilea Peperomioides">
-                    <div class="plant-info">
-                        <h3>Pilea Peperomioides</h3>
-                        <p class="price">$35.000</p>
-                    </div>
-                </div>
-
-                <!-- Tarjeta de Planta 4 -->
-                <div class="plant-card" data-category="exterior">
-                    <img src="https://images.unsplash.com/photo-1587823548639-68ae24164478?q=80&w=1974&auto=format&fit=crop" alt="Lavanda">
-                    <div class="plant-info">
-                        <h3>Lavanda</h3>
-                        <p class="price">$25.000</p>
-                    </div>
-                </div>
-
-                <!-- Tarjeta de Planta 5 -->
-                <div class="plant-card" data-category="exterior">
-                    <img src="https://images.unsplash.com/photo-1557080252-e3d82a450531?q=80&w=1974&auto=format&fit=crop" alt="Rosal">
-                    <div class="plant-info">
-                        <h3>Rosal Miniatura</h3>
-                        <p class="price">$30.000</p>
-                    </div>
-                </div>
-
-                <!-- Tarjeta de Planta 6 -->
-                <div class="plant-card" data-category="suculenta">
-                    <img src="https://images.unsplash.com/photo-1509423350611-21c235882a1e?q=80&w=1974&auto=format&fit=crop" alt="Orquídea">
-                    <div class="plant-info">
-                        <h3>Orquídea Phalaenopsis</h3>
-                        <p class="price">$70.000</p>
-                    </div>
+        </section>
+        
+        <!-- ================== SECCIÓN DE MACETAS ================== -->
+        <section id="macetas" class="pots-container">
+            <div class="container">
+                <h2 class="section-title">Macetas con Estilo</h2>
+                <div class="product-grid">
+                    <!-- Macetas -->
+                    <div class="product-card"><img src="https://images.unsplash.com/photo-1599411333535-912b6irtunp8g?q=80&w=1974&auto=format&fit=crop" alt="Maceta de cerámica blanca"><div class="product-info"><h3>Maceta Cerámica Blanca</h3><p class="price">$35.000</p></div></div>
+                    <div class="product-card"><img src="https://images.unsplash.com/photo-1586527026822-2a312a14a01c?q=80&w=1974&auto=format&fit=crop" alt="Maceta de terracota"><div class="product-info"><h3>Maceta Clásica Terracota</h3><p class="price">$20.000</p></div></div>
+                    <div class="product-card"><img src="https://images.unsplash.com/photo-1617172810886-455b5b9347a5?q=80&w=1974&auto=format&fit=crop" alt="Maceta moderna con base de madera"><div class="product-info"><h3>Maceta Nórdica con Base</h3><p class="price">$65.000</p></div></div>
+                    <div class="product-card"><img src="https://images.unsplash.com/photo-1602144365922-0a56214352a8?q=80&w=1974&auto=format&fit=crop" alt="Maceta de cemento"><div class="product-info"><h3>Maceta de Cemento Pulido</h3><p class="price">$45.000</p></div></div>
+                    <div class="product-card"><img src="https://images.unsplash.com/photo-1604256223293-8d1a137e5419?q=80&w=1974&auto=format&fit=crop" alt="Maceta colgante de macramé"><div class="product-info"><h3>Soporte Colgante Macramé</h3><p class="price">$38.000</p></div></div>
+                    <div class="product-card"><img src="https://images.unsplash.com/photo-1591511475971-a9e3a690098f?q=80&w=1974&auto=format&fit=crop" alt="Maceta con cara"><div class="product-info"><h3>Maceta Decorativa 'Cara'</h3><p class="price">$50.000</p></div></div>
+                    <div class="product-card"><img src="https://images.unsplash.com/photo-1600329923380-5a7a8d9a2a47?q=80&w=1974&auto=format&fit=crop" alt="Maceta de metal dorada"><div class="product-info"><h3>Maceta Metálica Dorada</h3><p class="price">$55.000</p></div></div>
+                    <div class="product-card"><img src="https://images.unsplash.com/photo-1628868845235-a4618e7d23cf?q=80&w=1974&auto=format&fit=crop" alt="Canasta de fibra natural"><div class="product-info"><h3>Canasta de Fibra Natural</h3><p class="price">$48.000</p></div></div>
+                    <div class="product-card"><img src="https://images.unsplash.com/photo-1614741134788-251c1103c8c6?q=80&w=1974&auto=format&fit=crop" alt="Set de macetas pequeñas"><div class="product-info"><h3>Set 3 Macetas Geométricas</h3><p class="price">$42.000</p></div></div>
+                    <div class="product-card"><img src="https://images.unsplash.com/photo-1592205869288-75b466104445?q=80&w=1974&auto=format&fit=crop" alt="Maceta de autorriego"><div class="product-info"><h3>Maceta de Autorriego</h3><p class="price">$60.000</p></div></div>
                 </div>
             </div>
         </section>
@@ -347,7 +315,7 @@
         <div class="container">
             <h2>Ponte en Contacto</h2>
             <p>
-                Visítanos en nuestro vivero en <strong>Norcasia, Caldas</strong> o llámanos. <br>¡Estamos listos para ayudarte a encontrar tus plantas ideales!
+                Visítanos en nuestro vivero en <strong>Norcasia, Caldas</strong> o llámanos. <br>¡Estamos listos para ayudarte a encontrar tus plantas y macetas ideales!
             </p>
             <p class="contact-info">
                 Celular y WhatsApp: <strong>310 357 2921</strong>
