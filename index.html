@@ -45,9 +45,8 @@
             padding: 80px 0;
         }
         
-        /* Contenedor para la sección de macetas */
         .pots-container {
-             background-color: #e5e4d7; /* Un fondo ligeramente diferente para distinguir la sección */
+             background-color: #e5e4d7;
         }
 
         h1, h2, h3 {
@@ -55,13 +54,14 @@
             color: var(--verde-principal);
         }
 
-        /* --- Header y Navegación --- */
+        /* --- NUEVO Header con Logo Centrado --- */
         .header {
             background-color: var(--texto-claro);
-            padding: 15px 5%;
+            padding: 20px 5%;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column; /* Apila el logo y la navegación */
+            align-items: center; /* Centra todo horizontalmente */
+            gap: 15px; /* Espacio entre el logo y la navegación */
             position: sticky;
             top: 0;
             z-index: 100;
@@ -70,7 +70,7 @@
         
         .logo {
             font-family: var(--fuente-titulos);
-            font-size: 1.8em;
+            font-size: 2.5em; /* Tamaño aumentado para mayor impacto */
             color: var(--verde-principal);
             text-decoration: none;
         }
@@ -79,7 +79,7 @@
             color: var(--verde-principal);
             text-decoration: none;
             font-weight: 500;
-            margin-left: 25px;
+            margin: 0 15px; /* Espacio entre los enlaces */
             font-size: 1em;
             transition: color 0.3s ease;
         }
@@ -88,18 +88,25 @@
             color: var(--acento-amarillo);
         }
 
-        /* --- Sección Hero (Principal) --- */
+        /* --- NUEVA Sección Hero con Imagen Cambiante --- */
         .hero {
+            /* La imagen de fondo inicial se establece aquí */
             background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('https://images.unsplash.com/photo-1463936575829-25148e1db1b8?q=80&w=2070&auto=format&fit=crop');
             height: 85vh;
             background-position: center;
             background-size: cover;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             text-align: center;
             color: var(--texto-claro);
+            position: relative;
+            /* Transición suave para el cambio de imagen */
+            transition: background-image 1s ease-in-out;
+        }
+
+        .hero-content {
+            z-index: 2; /* Asegura que el texto esté sobre la imagen */
         }
         
         .hero h1 {
@@ -139,7 +146,6 @@
             margin-bottom: 50px;
         }
         
-        /* --- Cuadrícula de Productos (Plantas y Macetas) --- */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -183,13 +189,12 @@
             margin-top: 15px;
         }
         
-        /* --- Footer (Contacto) --- */
         .footer {
             background-color: var(--verde-principal);
             color: var(--texto-claro);
             text-align: center;
             padding: 60px 0;
-            margin-top: -1px; /* Para evitar doble margen con la sección de macetas */
+            margin-top: -1px;
         }
 
         .footer h2 {
@@ -210,15 +215,12 @@
 
         /* --- Diseño Responsivo para Móviles --- */
         @media (max-width: 768px) {
-            .header {
-                flex-direction: column;
-                padding: 15px;
-            }
-            .nav {
-                margin-top: 15px;
+            .logo {
+                font-size: 2em;
             }
             .nav a {
                 margin: 0 10px;
+                font-size: 0.9em;
             }
             .hero h1 {
                 font-size: 2.8rem;
@@ -232,16 +234,13 @@
             .section-title {
                 font-size: 2.2em;
             }
-            .product-grid {
-                grid-template-columns: 1fr;
-            }
         }
 
     </style>
 </head>
 <body>
 
-    <!-- ================== HEADER ================== -->
+    <!-- ================== HEADER CON LOGO CENTRADO ================== -->
     <header class="header" id="header">
         <a href="#" class="logo">Polinizando</a>
         <nav class="nav">
@@ -253,25 +252,26 @@
     </header>
 
     <main>
-        <!-- ================== SECCIÓN PRINCIPAL (HERO) ================== -->
+        <!-- ================== HERO CON IMAGEN CAMBIANTE ================== -->
         <section class="hero" id="hero">
-            <h1>Vida y color para tu hogar</h1>
-            <p>El vivero de Norcasia, Caldas, con la mayor variedad de plantas y macetas para llenar tus espacios de naturaleza y frescura.</p>
-            <a href="#catalogo" class="cta-button">Explora nuestros productos</a>
+            <div class="hero-content">
+                <h1>Vida y color para tu hogar</h1>
+                <p>El vivero de Norcasia, Caldas, con la mayor variedad de plantas y macetas para llenar tus espacios de naturaleza y frescura.</p>
+                <a href="#catalogo" class="cta-button">Explora nuestros productos</a>
+            </div>
         </section>
 
         <!-- ================== CATÁLOGO DE PLANTAS ================== -->
         <section id="catalogo" class="container">
             <h2 class="section-title">Nuestro Catálogo de Plantas</h2>
-            
             <div class="product-grid">
-                <!-- Plantas -->
+                <!-- 20 tarjetas de plantas -->
                 <div class="product-card"><img src="https://images.unsplash.com/photo-1596547609233-9693a5a781d6?q=80&w=1974&auto=format&fit=crop" alt="Monstera Deliciosa"><div class="product-info"><h3>Monstera Deliciosa</h3><p class="price">$55.000</p></div></div>
                 <div class="product-card"><img src="https://images.unsplash.com/photo-1614555893096-f187799292a7?q=80&w=1964&auto=format&fit=crop" alt="Pilea Peperomioides"><div class="product-info"><h3>Pilea Peperomioides</h3><p class="price">$35.000</p></div></div>
                 <div class="product-card"><img src="https://images.unsplash.com/photo-1509423350611-21c235882a1e?q=80&w=1974&auto=format&fit=crop" alt="Orquídea"><div class="product-info"><h3>Orquídea Phalaenopsis</h3><p class="price">$70.000</p></div></div>
                 <div class="product-card"><img src="https://images.unsplash.com/photo-1600272020948-0d45203b53c3?q=80&w=1966&auto=format&fit=crop" alt="Helecho"><div class="product-info"><h3>Helecho de Boston</h3><p class="price">$30.000</p></div></div>
                 <div class="product-card"><img src="https://images.unsplash.com/photo-1596724814345-424a18035e16?q=80&w=1974&auto=format&fit=crop" alt="Cactus"><div class="product-info"><h3>Cactus San Pedro</h3><p class="price">$45.000</p></div></div>
-                <div class="product-card"><img src="https://images.unsplash.com/photo-1601962383577-a8b355e109ce?q=80&w=1974&auto=format&fit=crop" alt="Sansevieria"><div class="product-info"><h3>Sansevieria (Lengua de suegra)</h3><p class="price">$40.000</p></div></div>
+                <div class="product-card"><img src="https://images.unsplash.com/photo-1601962383577-a8b355e109ce?q=80&w=1974&auto=format&fit=crop" alt="Sansevieria"><div class="product-info"><h3>Sansevieria</h3><p class="price">$40.000</p></div></div>
                 <div class="product-card"><img src="https://images.unsplash.com/photo-1520427221293-b1d6f1403610?q=80&w=1974&auto=format&fit=crop" alt="Variedad de Suculentas"><div class="product-info"><h3>Set de Suculentas</h3><p class="price">$40.000</p></div></div>
                 <div class="product-card"><img src="https://images.unsplash.com/photo-1587823548639-68ae24164478?q=80&w=1974&auto=format&fit=crop" alt="Lavanda"><div class="product-info"><h3>Planta de Lavanda</h3><p class="price">$25.000</p></div></div>
                 <div class="product-card"><img src="https://images.unsplash.com/photo-1617112848984-75515d74d2da?q=80&w=1974&auto=format&fit=crop" alt="Ficus Lyrata"><div class="product-info"><h3>Ficus Lyrata</h3><p class="price">$85.000</p></div></div>
@@ -294,8 +294,8 @@
             <div class="container">
                 <h2 class="section-title">Macetas con Estilo</h2>
                 <div class="product-grid">
-                    <!-- Macetas -->
-                    <div class="product-card"><img src="https://images.unsplash.com/photo-1599411333535-912b6irtunp8g?q=80&w=1974&auto=format&fit=crop" alt="Maceta de cerámica blanca"><div class="product-info"><h3>Maceta Cerámica Blanca</h3><p class="price">$35.000</p></div></div>
+                    <!-- 10 tarjetas de macetas -->
+                    <div class="product-card"><img src="https://images.unsplash.com/photo-1599411333535-912b647f8a8g?q=80&w=1974&auto=format&fit=crop" alt="Maceta de cerámica blanca"><div class="product-info"><h3>Maceta Cerámica Blanca</h3><p class="price">$35.000</p></div></div>
                     <div class="product-card"><img src="https://images.unsplash.com/photo-1586527026822-2a312a14a01c?q=80&w=1974&auto=format&fit=crop" alt="Maceta de terracota"><div class="product-info"><h3>Maceta Clásica Terracota</h3><p class="price">$20.000</p></div></div>
                     <div class="product-card"><img src="https://images.unsplash.com/photo-1617172810886-455b5b9347a5?q=80&w=1974&auto=format&fit=crop" alt="Maceta moderna con base de madera"><div class="product-info"><h3>Maceta Nórdica con Base</h3><p class="price">$65.000</p></div></div>
                     <div class="product-card"><img src="https://images.unsplash.com/photo-1602144365922-0a56214352a8?q=80&w=1974&auto=format&fit=crop" alt="Maceta de cemento"><div class="product-info"><h3>Maceta de Cemento Pulido</h3><p class="price">$45.000</p></div></div>
@@ -325,6 +325,34 @@
             </p>
         </div>
     </footer>
+
+    <!-- ================== JAVASCRIPT PARA IMAGEN CAMBIANTE ================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Arreglo de URLs de las imágenes que quieres mostrar en el carrusel
+            const heroImages = [
+                'https://images.unsplash.com/photo-1463936575829-25148e1db1b8?q=80&w=2070&auto=format&fit=crop',
+                'https://images.unsplash.com/photo-1491147334573-44cbb4602074?q=80&w=1974&auto=format&fit=crop',
+                'https://images.unsplash.com/photo-1533616688484-95c613e5908e?q=80&w=2070&auto=format&fit=crop',
+                'https://images.unsplash.com/photo-1525498128493-380d1990a112?q=80&w=1974&auto=format&fit=crop'
+            ];
+
+            const heroSection = document.getElementById('hero');
+            let currentImageIndex = 0;
+
+            // Función para cambiar la imagen de fondo
+            function changeHeroImage() {
+                currentImageIndex = (currentImageIndex + 1) % heroImages.length;
+                const newImageUrl = heroImages[currentImageIndex];
+                
+                // Aplicamos el gradiente oscuro + la nueva URL de la imagen
+                heroSection.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('${newImageUrl}')`;
+            }
+
+            // Cambiar la imagen cada 5 segundos (5000 milisegundos)
+            setInterval(changeHeroImage, 5000);
+        });
+    </script>
 
 </body>
 </html>
